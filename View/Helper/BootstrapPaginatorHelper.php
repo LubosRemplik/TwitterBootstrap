@@ -204,6 +204,16 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
 			$key === $defaultModel . '.' . $sortKey
 		);
 
+		if (isset($options['icons'])) {
+		    $icons = $options['icons'];
+		    unset($options['icons']);
+		} else {
+		    $icons = array(
+		        'asc'  => $this->Html->icon('chevron-down'),
+		        'desc' => $this->Html->icon('chevron-up')
+	        );
+		}
+		
 		if ($isSorted) {
 			$dir = $this->sortDir($options['model']) === 'asc' ? 'desc' : 'asc';
 			$class = $dir === 'asc' ? 'desc' : 'asc';
@@ -213,16 +223,6 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
 				$options['class'] = $class;
 			}
 
-			if (isset($options['icons'])) {
-			    $icons = $options['icons'];
-			    unset($options['icons']);
-			} else {
-			    $icons = array(
-			        'asc'  => $this->Html->icon('chevron-down'),
-			        'desc' => $this->Html->icon('chevron-up')
-		        );
-			}
-
 			$icon = $icons[$dir];
 		}
 		if (is_array($title) && array_key_exists($dir, $title)) {
@@ -230,6 +230,7 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
 		}
 
 		$title = h($title) . $icon;
+		
 		$options['escape'] = false;
 
 		$url = array_merge(array('sort' => $key, 'direction' => $dir), $url, array('order' => null));
