@@ -26,7 +26,7 @@ class CopyShell extends TwitterBootstrapAppShell {
 			),
 			'subcommands' => array(
 				'all' => array(
-					'help' => __('Copies Less, Js & Img source from Bootstrap submodule in plugin Vendor dir'),
+					'help' => __('Copies Less, Js & Assets source from Bootstrap submodule in plugin Vendor dir'),
 					'parser' => array(
 						'description' => array(__('files will be placed in webroot of App or named Theme')),
 						'options' => array(
@@ -45,10 +45,10 @@ class CopyShell extends TwitterBootstrapAppShell {
 						),
 					)
 				),
-				'img' => array(
-					'help' => __('Copies Img source from Bootstrap submodule in plugin Vendor dir'),
+				'assets' => array(
+					'help' => __('Copies Assets source from Bootstrap submodule in plugin Vendor dir'),
 					'parser' => array(
-						'description' => array(__('files will be placed in webroot/img/ of App or named Theme')),
+						'description' => array(__('files will be placed in webroot/assets/ of App or named Theme')),
 						'options' => array(
 							'theme' => $options['theme'],
 							'webroot' => $options['webroot']
@@ -82,12 +82,12 @@ class CopyShell extends TwitterBootstrapAppShell {
 			case 'less':
 				$this->copyLess();
 				break;
-			case 'img':
-				$this->copyImg();
+			case 'assets':
+				$this->copyAssets();
 				break;
 			default:
 				$this->copyLess();
-				$this->copyImg();
+				$this->copyAssets();
 				$this->copyJs();
 				break;
 		}
@@ -125,17 +125,17 @@ class CopyShell extends TwitterBootstrapAppShell {
 		$this->_copy(compact('from', 'to'));
 	}
 
-	public function copyImg() {
-		$from = $this->bootstrapPath . self::IMG_DIR;
+	public function copyAssets() {
+		$from = $this->bootstrapPath . self::ASSETS_DIR;
 		$to = '';
 		if ($this->_Theme && !isset($this->params['webroot'])) {
-			$to = APP . 'View' . DS . 'Themed' . DS . $this->_Theme . DS . 'webroot' . DS . 'img';
+			$to = APP . 'View' . DS . 'Themed' . DS . $this->_Theme . DS . 'webroot' . DS . 'assets';
 		} elseif ($this->_Theme && isset($this->params['webroot'])) {
-			$to = WWW_ROOT . 'theme' . DS . $this->_Theme . DS . 'img';
+			$to = WWW_ROOT . 'theme' . DS . $this->_Theme . DS . 'assets';
 		} else {
-			$to = WWW_ROOT . 'img';
+			$to = WWW_ROOT . 'assets';
 		}
-		$this->out('<info>Copying Images</info>');
+		$this->out('<info>Copying Assets</info>');
 		$this->_copy(compact('from', 'to'));
 	}
 
