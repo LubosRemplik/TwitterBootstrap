@@ -4,7 +4,7 @@ App::uses('Folder', 'Utility');
 
 class TwitterBootstrapAppShell extends AppShell {
 
-	const IMG_DIR = 'img';
+	const ASSETS_DIR = 'assets';
 
 	const JS_DIR = 'js';
 
@@ -39,7 +39,7 @@ class TwitterBootstrapAppShell extends AppShell {
 		foreach ($paths as $path) {
 			$dir = 'twitter' . DS . 'bootstrap' . DS;
 			if (
-				is_dir($path . $dir . self::IMG_DIR) &&
+				is_dir($path . $dir . self::ASSETS_DIR) &&
 				is_dir($path . $dir . self::JS_DIR) &&
 				is_dir($path . $dir . self::LESS_DIR)
 			) {
@@ -49,7 +49,7 @@ class TwitterBootstrapAppShell extends AppShell {
 
 			$dir = 'bootstrap' . DS;
 			if (
-				is_dir($path . $dir . self::IMG_DIR) &&
+				is_dir($path . $dir . self::ASSETS_DIR) &&
 				is_dir($path . $dir . self::JS_DIR) &&
 				is_dir($path . $dir . self::LESS_DIR)
 			) {
