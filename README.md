@@ -1,53 +1,22 @@
 #TwitterBootstrap Plugin for CakePHP2.x
 The TwitterBootstrap Plugin provides an easy-to-use feature Bootstrap in CakePHP2.x
+Bootstrap 3.0.0RC is used
 
-[Bootstrap, from Twitter](http://twitter.github.com/bootstrap/)
-
-This v1.5.5 supports Bootstrap v2.2.2
+[Bootstrap, from Twitter](http://github.com/twbs/bootstrap)
 
 ##Installation
 ###This plugin
 
-Composer
-
-	{
-	  "repositories": [
-	    {
-	      "type": "package",
-	      "package": {
-	        "name": "twitter/bootstrap",
-	        "version": "dev-master",
-	        "source": {
-	          "url": "git://github.com/twitter/bootstrap",
-	          "type": "git",
-	          "reference": "master"
-	        },
-	        "require": {
-	          "composer/installers": "*"
-	        }
-	      },
-	      "packagist": false
-	    }
-	  ],
-	  "require": {
-	    "twitter/bootstrap": "dev-master",
-	    "slywalker/twitter_bootstrap": "dev-master"
-	  },
-	  "config": {
-	    "vendor-dir": "Vendor"
-	  }
-	}
-
 Submodule
 
 	$ cd /your_app_path
-	$ git submodule add git://github.com/slywalker/TwitterBootstrap.git Plugin/TwitterBootstrap
+	$ git submodule add git://github.com/LubosRemplik/TwitterBootstrap.git Plugin/TwitterBootstrap
 	$ git submodule update --init --recursive
 
 Clone
 
 	$ cd /your_app_path/Plugin
-	$ git clone git://github.com/slywalker/TwitterBootstrap.git
+	$ git clone git://github.com/LubosRemplik/TwitterBootstrap.git
 	$ cd TwitterBootstrap
 	$ git submodule update --init
 
