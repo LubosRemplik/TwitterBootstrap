@@ -94,4 +94,19 @@ class BootstrapHtmlHelper extends HtmlHelper {
 		return parent::tag('ul', implode("\n", $li), $options);
 	}
 
+	public function navbarToggle($options = array()) {
+		$default = array(
+			'class' => 'navbar-toggle',
+			'type' => 'button',
+			'data-toggle' => 'collapse',
+			'data-target' => '.navbar-responsive-collapse'
+		);
+		$options = array_merge($default, (array)$options);
+
+		$span = array();
+		$span[] = parent::tag('span', '', array('class' => 'icon-bar'));
+		$span[] = parent::tag('span', '', array('class' => 'icon-bar'));
+		$span[] = parent::tag('span', '', array('class' => 'icon-bar'));
+		return parent::tag('button', implode("\n", $span), $options);
+	}
 }
