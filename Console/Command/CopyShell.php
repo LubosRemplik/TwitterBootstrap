@@ -14,6 +14,11 @@ class CopyShell extends TwitterBootstrapAppShell {
 				'short' => 'w',
 				'help' => __('Set file output to webroot Theme dir (use with theme option).'),
 				'boolean' => true
+			),
+			'path' => array(
+				'short' => 'p',
+				'help' => __('Set file output to path.'),
+				'boolean' => false
 			)
 		);
 
@@ -22,7 +27,8 @@ class CopyShell extends TwitterBootstrapAppShell {
 			'description' => __('TwitterBootstrap Copy Shell Help.'),
 			'options' => array(
 				'theme' => $options['theme'],
-				'webroot' => $options['webroot']
+				'webroot' => $options['webroot'],
+				'path' => $options['path'],
 			),
 			'subcommands' => array(
 				'all' => array(
@@ -31,7 +37,8 @@ class CopyShell extends TwitterBootstrapAppShell {
 						'description' => array(__('files will be placed in webroot of App or named Theme')),
 						'options' => array(
 							'theme' => $options['theme'],
-							'webroot' => $options['webroot']
+							'webroot' => $options['webroot'],
+							'path' => $options['path'],
 						),
 					)
 				),
@@ -41,7 +48,8 @@ class CopyShell extends TwitterBootstrapAppShell {
 						'description' => array(__('files will be placed in webroot/css/lib/ of App or named Theme')),
 						'options' => array(
 							'theme' => $options['theme'],
-							'webroot' => $options['webroot']
+							'webroot' => $options['webroot'],
+							'path' => $options['path'],
 						),
 					)
 				),
@@ -51,7 +59,8 @@ class CopyShell extends TwitterBootstrapAppShell {
 						'description' => array(__('files will be placed in webroot/assets/ of App or named Theme')),
 						'options' => array(
 							'theme' => $options['theme'],
-							'webroot' => $options['webroot']
+							'webroot' => $options['webroot'],
+							'path' => $options['path'],
 						),
 					)
 				),
@@ -61,7 +70,8 @@ class CopyShell extends TwitterBootstrapAppShell {
 						'description' => array(__('files will be placed in webroot/js/lib of App or named Theme')),
 						'options' => array(
 							'theme' => $options['theme'],
-							'webroot' => $options['webroot']
+							'webroot' => $options['webroot'],
+							'path' => $options['path'],
 						),
 					)
 				)
@@ -118,6 +128,8 @@ class CopyShell extends TwitterBootstrapAppShell {
 			$to = APP . 'View' . DS . 'Themed' . DS . $this->_Theme . DS . 'webroot' . DS . 'css' . DS . 'lib';
 		} elseif ($this->_Theme && isset($this->params['webroot'])) {
 			$to = WWW_ROOT . 'theme' . DS . $this->_Theme . DS . 'css' . DS . 'lib';
+		} elseif (isset($this->params['path'])) {
+			$to = $this->params['path'] . 'css' . DS . 'less';
 		} else {
 			$to = WWW_ROOT . 'css' . DS . 'less';
 		}
@@ -132,6 +144,8 @@ class CopyShell extends TwitterBootstrapAppShell {
 			$to = APP . 'View' . DS . 'Themed' . DS . $this->_Theme . DS . 'webroot' . DS . 'assets';
 		} elseif ($this->_Theme && isset($this->params['webroot'])) {
 			$to = WWW_ROOT . 'theme' . DS . $this->_Theme . DS . 'assets';
+		} elseif (isset($this->params['path'])) {
+			$to = $this->params['path'] . 'assets';
 		} else {
 			$to = WWW_ROOT . 'assets';
 		}
@@ -146,6 +160,8 @@ class CopyShell extends TwitterBootstrapAppShell {
 			$to = APP . 'View' . DS . 'Themed' . DS . $this->_Theme . DS . 'webroot' . DS . 'js' . DS . 'lib';
 		} elseif ($this->_Theme && isset($this->params['webroot'])) {
 			$to = WWW_ROOT . 'theme' . DS . $this->_Theme . DS . 'js' . DS . 'lib';
+		} elseif (isset($this->params['path'])) {
+			$to = $this->params['path'] . 'js' . DS . 'lib';
 		} else {
 			$to = WWW_ROOT . 'js' . DS . 'lib';
 		}
