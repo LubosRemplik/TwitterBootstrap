@@ -33,7 +33,7 @@ class BootstrapFormHelper extends FormHelper {
 			}
 			return $options;
 		} else {
-			return $this->Html->tag('span', $options['value'], $options['class']);
+			return $this->Html->tag('span', $options['value'], $options);
 		}
 	}
 
@@ -120,7 +120,7 @@ class BootstrapFormHelper extends FormHelper {
 	protected function _restructureLabel($out, $options = array()) {
 		$out = explode("\n", $out);
 		foreach ($out as $key => &$_out) {
-			$input = strip_tags($_out, '<input><img>');
+			$input = strip_tags($_out, '<input><img><label>');
 			if ($input) {
 				$_out = $this->Html->tag('label', $input, $options);
 			}
@@ -248,7 +248,7 @@ class BootstrapFormHelper extends FormHelper {
 		}
 
 		$out = $before . $label . $between . $input;
-		return (false === $div) ? $out : $this->Html->div($div, $out);
+		return (false === $div) ? $out : $this->Html->tag('div', $out, array('class' => $div));
 	}
 
 	protected function _getType($fieldName, $options) {
